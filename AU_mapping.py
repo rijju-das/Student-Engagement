@@ -1,6 +1,4 @@
 class AU_mapping():
-  import seaborn as sns
-
   def prob_au(self,df,label,column):
       """The function performs returns the conditional probabilities 
          between each AU with engagement labels.
@@ -24,6 +22,7 @@ class AU_mapping():
           dic[c]=round((df1.shape[0]/d),2)
       return dic
   def au_heatmap(self,df):
+     
       """The function performs mapping among the AUs and engagement labels
         by calculating their conditional probabilities. And plot the 
         mapping values via a heatmap.
@@ -40,6 +39,9 @@ class AU_mapping():
             fig: the heatmap plot of df_map
             """
 
+      import seaborn as sns
+      import pandas as pd
+      import matplotlib.pyplot as plt
       df_au = df.loc[:,"AU01_r":"AU45_r"]
       columns = df_au.columns
       df_y = df.loc[:,"Label_y"]
@@ -47,5 +49,5 @@ class AU_mapping():
       df_map = pd.DataFrame([self.prob_au(df_au,0,columns),self.prob_au(df_au,1,columns),self.prob_au(df_au,2,columns)],index=["Disengaged","Partially engaged","Engaged"]).T
   
       fig = plt.figure(figsize=(5,5))
-      sns.heatmap(df_hmap, cmap ='Purples', linewidths = 0.70, vmin=0,vmax=1)
+      sns.heatmap(df_map, cmap ='Purples', linewidths = 0.70, vmin=0,vmax=1)
       return fig, df_map
