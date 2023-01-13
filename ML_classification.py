@@ -221,20 +221,22 @@ class ML_classification():
 
     # Plot ROC curve
     fig = plt.figure(figsize=(5,5))
+    plt.rc('font', size=10)
+    plt.rc('axes', titlesize=10)
     plt.plot(fpr[0]["micro"], tpr[0]["micro"],color="red",
-            label='XGBoost (area = {0:0.2f})'
+            label='XGBoost(area = {0:0.2f})'
                   ''.format(roc_auc[0]["micro"]))
     plt.plot(fpr[1]["micro"], tpr[1]["micro"],color="blue",
-            label='Random forest (area = {0:0.2f})'
+            label='Random forest(area = {0:0.2f})'
                   ''.format(roc_auc[1]["micro"]))
     plt.plot(fpr[2]["micro"], tpr[2]["micro"], color="purple",
-            label='Decision tree (area = {0:0.2f})'
+            label='Decision tree(area = {0:0.2f})'
                   ''.format(roc_auc[2]["micro"]))
     plt.plot(fpr[3]["micro"], tpr[3]["micro"], color="green",
-            label='Gradient boosting (area = {0:0.2f})'
+            label='Gradient boosting(area = {0:0.2f})'
                   ''.format(roc_auc[3]["micro"]))
     plt.plot(fpr[4]["micro"], tpr[4]["micro"],color="yellow",
-            label='Support vector machine (area = {0:0.2f})'
+            label='SVM(area = {0:0.2f})'
                   ''.format(roc_auc[4]["micro"]))
 
     plt.plot([0, 1], [0, 1], 'k--')
