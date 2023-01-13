@@ -221,7 +221,7 @@ class ML_classification():
 
     # Plot ROC curve
     fig = plt.figure(figsize=(5,5))
-    plt.rc('axes', labelsize=20)
+    plt.rc('axes', labelsize=18)
     plt.rc('legend', fontsize=12)
     plt.plot(fpr[0]["micro"], tpr[0]["micro"],color="red",
             label='XGBoost(area = {0:0.2f})'
