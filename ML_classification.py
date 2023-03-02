@@ -96,9 +96,11 @@ class ML_classification():
                     'X_test': X_s4_test,'Y_test':Y_test})
     return training_data
 
-  def classifier_result(self, training_data):
+  def classifier_result(self, training_data,i,path_o):
     from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
-    models=[]
+    import joblib
+    import os
+    
     temp=[]
 
     from sklearn.ensemble import RandomForestClassifier
@@ -110,8 +112,9 @@ class ML_classification():
     temp.append([accuracy_score(training_data['Y_test'], predicted_labels),
                  precision_score(training_data['Y_test'], predicted_labels, average='weighted'), 
                  recall_score(training_data['Y_test'], predicted_labels, average='weighted'),
-                 f1_score(training_data['Y_test'], predicted_labels,average='micro')])     
-    models.append(rf_clf)
+                 f1_score(training_data['Y_test'], predicted_labels,average='micro')])  
+    path_d = os.path.join(path_o,"model_rf_%d"%(i))   
+    joblib.dump(rf_clf,path_d)
     from xgboost.sklearn import XGBClassifier
     #initial model
     xgb = XGBClassifier(learning_rate=0.1,
@@ -132,7 +135,8 @@ class ML_classification():
                  precision_score(training_data['Y_test'], predicted_labels, average='weighted'), 
                  recall_score(training_data['Y_test'], predicted_labels, average='weighted'),
                  f1_score(training_data['Y_test'], predicted_labels,average='micro')])     
-    models.append(xgb)
+    path_d = os.path.join(path_o,"model_xgb_%d"%(i))   
+    joblib.dump(xgb,path_d)
     from sklearn import tree
     dt_clf = tree.DecisionTreeClassifier(max_depth=39)
     dt_clf.fit(training_data['X_train'], training_data['Y_train'].reshape(training_data['Y_train'].shape[0],))
@@ -142,7 +146,8 @@ class ML_classification():
                  precision_score(training_data['Y_test'], predicted_labels, average='weighted'), 
                  recall_score(training_data['Y_test'], predicted_labels, average='weighted'),
                  f1_score(training_data['Y_test'], predicted_labels,average='micro')])    
-    models.append(dt_clf)
+    path_d = os.path.join(path_o,"model_dt_%d"%(i))   
+    joblib.dump(dt_clf,path_d)
     from sklearn.svm import SVC
     svc_clf = SVC(C=1, gamma=0.001,probability=True)
     svc_clf.fit(training_data['X_train'], training_data['Y_train'].reshape(training_data['Y_train'].shape[0],))
@@ -152,7 +157,8 @@ class ML_classification():
                  precision_score(training_data['Y_test'], predicted_labels, average='weighted'), 
                  recall_score(training_data['Y_test'], predicted_labels, average='weighted'),
                  f1_score(training_data['Y_test'], predicted_labels,average='micro')])     
-    models.append(svc_clf)
+    path_d = os.path.join(path_o,"model_svc_%d"%(i))   
+    joblib.dump(svc_clf,path_d)
     from sklearn.ensemble import GradientBoostingClassifier
     clf_gb=GradientBoostingClassifier(random_state = 0)
     clf_gb.fit(training_data['X_train'], training_data['Y_train'].reshape(training_data['Y_train'].shape[0],))
@@ -162,9 +168,10 @@ class ML_classification():
                  precision_score(training_data['Y_test'], predicted_labels, average='weighted'), 
                  recall_score(training_data['Y_test'], predicted_labels, average='weighted'),
                  f1_score(training_data['Y_test'], predicted_labels,average='micro')])     
-    models.append(clf_gb)
+    path_d = os.path.join(path_o,"model_gb_%d"%(i))   
+    joblib.dump(clf_gb,path_d)
     fig = self.plot_roc_curve_all([xgb,rf_clf,dt_clf,clf_gb,svc_clf],training_data['X_test'],training_data['Y_test'])
-    return(temp, fig, models)
+    return(temp, fig)
 
   def roc_values(self, model, y_score,y_test,n_classes):
     import numpy as np
