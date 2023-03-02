@@ -113,7 +113,7 @@ class ML_classification():
                  precision_score(training_data['Y_test'], predicted_labels, average='weighted'), 
                  recall_score(training_data['Y_test'], predicted_labels, average='weighted'),
                  f1_score(training_data['Y_test'], predicted_labels,average='micro')])  
-    path_d = os.path.join(path_o,"model_rf_%d"%(i))   
+    path_d = os.path.join(path_o,"model_rf_%d.joblib"%(i))   
     joblib.dump(rf_clf,path_d)
     from xgboost.sklearn import XGBClassifier
     #initial model
@@ -135,7 +135,7 @@ class ML_classification():
                  precision_score(training_data['Y_test'], predicted_labels, average='weighted'), 
                  recall_score(training_data['Y_test'], predicted_labels, average='weighted'),
                  f1_score(training_data['Y_test'], predicted_labels,average='micro')])     
-    path_d = os.path.join(path_o,"model_xgb_%d"%(i))   
+    path_d = os.path.join(path_o,"model_xgb_%d.joblib"%(i))   
     joblib.dump(xgb,path_d)
     from sklearn import tree
     dt_clf = tree.DecisionTreeClassifier(max_depth=39)
@@ -146,7 +146,7 @@ class ML_classification():
                  precision_score(training_data['Y_test'], predicted_labels, average='weighted'), 
                  recall_score(training_data['Y_test'], predicted_labels, average='weighted'),
                  f1_score(training_data['Y_test'], predicted_labels,average='micro')])    
-    path_d = os.path.join(path_o,"model_dt_%d"%(i))   
+    path_d = os.path.join(path_o,"model_dt_%d.joblib"%(i))   
     joblib.dump(dt_clf,path_d)
     from sklearn.svm import SVC
     svc_clf = SVC(C=1, gamma=0.001,probability=True)
@@ -157,7 +157,7 @@ class ML_classification():
                  precision_score(training_data['Y_test'], predicted_labels, average='weighted'), 
                  recall_score(training_data['Y_test'], predicted_labels, average='weighted'),
                  f1_score(training_data['Y_test'], predicted_labels,average='micro')])     
-    path_d = os.path.join(path_o,"model_svc_%d"%(i))   
+    path_d = os.path.join(path_o,"model_svc_%d.joblib"%(i))   
     joblib.dump(svc_clf,path_d)
     from sklearn.ensemble import GradientBoostingClassifier
     clf_gb=GradientBoostingClassifier(random_state = 0)
@@ -168,7 +168,7 @@ class ML_classification():
                  precision_score(training_data['Y_test'], predicted_labels, average='weighted'), 
                  recall_score(training_data['Y_test'], predicted_labels, average='weighted'),
                  f1_score(training_data['Y_test'], predicted_labels,average='micro')])     
-    path_d = os.path.join(path_o,"model_gb_%d"%(i))   
+    path_d = os.path.join(path_o,"model_gb_%d.joblib"%(i))   
     joblib.dump(clf_gb,path_d)
     fig = self.plot_roc_curve_all([xgb,rf_clf,dt_clf,clf_gb,svc_clf],training_data['X_test'],training_data['Y_test'])
     return(temp, fig)
