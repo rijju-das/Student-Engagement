@@ -109,7 +109,7 @@ class ML_classification():
     rf_clf.fit(training_data['X_train'], training_data['Y_train'].reshape(training_data['Y_train'].shape[0],))
     predicted_labels = rf_clf.predict(training_data['X_test'])
     train_pred = rf_clf.predict(training_data['X_train'])
-    temp.append([accuracy_score(training_data['Y_test'], predicted_labels),
+    temp.append([rf_clf, accuracy_score(training_data['Y_test'], predicted_labels),
                  precision_score(training_data['Y_test'], predicted_labels, average='weighted'), 
                  recall_score(training_data['Y_test'], predicted_labels, average='weighted'),
                  f1_score(training_data['Y_test'], predicted_labels,average='micro')])  
@@ -131,7 +131,7 @@ class ML_classification():
     xgb.fit(training_data['X_train'], training_data['Y_train'].reshape(training_data['Y_train'].shape[0],))
     predicted_labels = xgb.predict(training_data['X_test'])
     train_pred = xgb.predict(training_data['X_train'])
-    temp.append([rf_clf, accuracy_score(training_data['Y_test'], predicted_labels),
+    temp.append([xgb, accuracy_score(training_data['Y_test'], predicted_labels),
                  precision_score(training_data['Y_test'], predicted_labels, average='weighted'), 
                  recall_score(training_data['Y_test'], predicted_labels, average='weighted'),
                  f1_score(training_data['Y_test'], predicted_labels,average='micro')])     
