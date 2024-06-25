@@ -29,7 +29,7 @@ class ML_classification():
     val_idxs, test_idxs = self.stratified_split(df[df.index.isin(val_idxs)], val_percent=0.5)
 
     train_df = df[df.index.isin(train_idxs)]
-    df_mp_train = train_df.loc[:,'x0':'y_67']
+    df_mp_train = train_df.loc[:,'x0':'y467']
     X_s1_train = df_mp_train.values
 
     df_gaze_train = train_df.loc[:,'gaze_0_x':'gaze_1_z']
