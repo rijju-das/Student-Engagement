@@ -18,7 +18,6 @@ class AU_mapping():
             dict: Dictionary with AUs as keys and SDC scores as values.
         """
         sdc_scores = {}
-        print(df)
         total_samples = df.shape[0]  # Total number of samples
 
 
@@ -74,7 +73,7 @@ class AU_mapping():
             
             # Define your emotion labels
             labels = ["disengaged", "partially engaged", "engaged"]
-
+            print(df_au.shape)
             # Calculate SDC scores using correct label list
             sdc_scores = self.prob_au(df_au, columns, labels, threshold=0.002)
             
