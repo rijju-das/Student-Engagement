@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 class AU_mapping():
-    def prob_au(self, df, columns, labels, threshold=0.002):
+    def prob_au(df, columns, labels, threshold=0.002):
         """
         Calculate Statistical Discriminative Coefficient (SDC) for each AU.
         
