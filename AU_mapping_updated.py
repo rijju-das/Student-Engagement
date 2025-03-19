@@ -1,7 +1,10 @@
 import pandas as pd
 import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
 class AU_mapping():
-    def prob_au(df, columns, labels, threshold=0.002):
+    def prob_au(self, df, columns, labels, threshold=0.002):
         """
         Calculate Statistical Discriminative Coefficient (SDC) for each AU.
         
@@ -41,34 +44,44 @@ class AU_mapping():
         
         return sdc_scores
 
+    def au_heatmap(self, df):
+        """
+        Maps AUs to engagement labels by calculating conditional probabilities
+        and plots the mapping values via a heatmap.
 
-    def au_heatmap(self,df):
-        
-        """The function performs mapping among the AUs and engagement labels
-            by calculating their conditional probabilities. And plot the 
-            mapping values via a heatmap.
+        Parameters
+        ----------
+        df: pandas DataFrame
+            The features dataframe
 
-                Parameters
-                ----------
-                df: pandas dataframe
-                    the features dataframe
-
-                Returns
-                -------
-                df_map: pandas dataframe
-                    The dataframe contains mapping values between each AU and engagement labels
-                fig: the heatmap plot of df_map
-                """
-
-        import seaborn as sns
-        import pandas as pd
-        import matplotlib.pyplot as plt
-        df_au = df.loc[:,"AU01_r":"AU45_r"]
+        Returns
+        -------
+        df_map: pandas DataFrame
+            The dataframe containing mapping values between each AU and engagement labels
+        fig: matplotlib figure object
+            The heatmap plot of df_map
+        """
+        # Extract AU columns
+        df_au = df.loc[:, "AU01_r":"AU45_r"]
         columns = df_au.columns
-        df_y = df.loc[:,"Label_y"]
-        df_au = pd.concat([df_au,df_y], axis=1)
-        df_map = pd.DataFrame([self.prob_au(df_au,0,columns),self.prob_au(df_au,1,columns),self.prob_au(df_au,2,columns)],index=["Disengaged","Partially engaged","Engaged"]).T
-    
-        fig = plt.figure(figsize=(5,5))
-        sns.heatmap(df_map, cmap ='Purples', linewidths = 0.70, vmin=0,vmax=1)
+        df_y = df["Label_y"]
+        df_au = pd.concat([df_au, df_y], axis=1)
+        
+        # Define your emotion labels
+        labels = ["disengaged", "partially engaged", "engaged"]
+
+        # Calculate SDC for each label and create a mapping DataFrame
+        df_map = pd.DataFrame([
+            self.prob_au(df_au, columns, labels, threshold=0.002),
+        ]).T
+        df_map.columns = ["SDC"]
+
+        # Plotting the heatmap
+        fig = plt.figure(figsize=(6, 6))
+        sns.heatmap(df_map, cmap='Purples', linewidths=0.7, annot=True)
+        plt.title("AU-Engagement Mapping Heatmap (SDC Scores)")
+        plt.xlabel("Engagement Levels")
+        plt.ylabel("Action Units")
+        plt.show()
+
         return fig, df_map
