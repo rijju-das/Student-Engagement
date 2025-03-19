@@ -11,7 +11,7 @@ class AU_mapping():
         Args:
             df (pd.DataFrame): DataFrame containing AU columns and label column 'Label_y'.
             columns (list): List of AU column names.
-            labels (list): List of unique labels ('engaged', 'partially engaged', 'disengaged').
+            labels (list): List of unique labels ['disengaged', 'partially engaged', 'engaged'].
             threshold (float): Threshold for considering an AU as "activated".
             
         Returns:
@@ -19,7 +19,6 @@ class AU_mapping():
         """
         sdc_scores = {}
         total_samples = df.shape[0]  # Total number of samples
-
 
         # Calculate P(c) for each AU (overall activation rate across all labels)
         P_c = {c: df[df[c] >= threshold].shape[0] / total_samples for c in columns}
@@ -30,7 +29,6 @@ class AU_mapping():
         for c in columns:
             sdc = 0
             for label in labels:
-                # Calculate P(c | l_i) - probability of activation given the label
                 d = df[df["Label_y"] == label].shape[0]
                 if d == 0:
                     continue  # Skip if no samples for this label
@@ -45,48 +43,43 @@ class AU_mapping():
         
         return sdc_scores
 
-        def au_heatmap(self, df):
-            """
-            Maps AUs to engagement labels by calculating conditional probabilities
-            and plots the mapping values via a heatmap.
+    def au_heatmap(self, df):
+        """
+        Maps AUs to engagement labels by calculating SDC scores and plotting them via a heatmap.
 
-            Parameters
-            ----------
-            df: pandas DataFrame
-                The features dataframe
+        Parameters
+        ----------
+        df: pandas DataFrame
+            The features dataframe
 
-            Returns
-            -------
-            df_map: pandas DataFrame
-                The dataframe containing mapping values between each AU and engagement labels
-            fig: matplotlib figure object
-                The heatmap plot of df_map
-            """
-            import seaborn as sns
-            import matplotlib.pyplot as plt
-            
-            # Extract AU columns
-            df_au = df.loc[:, "AU01_r":"AU45_r"]
-            columns = df_au.columns
-            df_y = df["Label_y"]
-            df_au = pd.concat([df_au, df_y], axis=1)
-            
-            # Define your emotion labels
-            labels = ["disengaged", "partially engaged", "engaged"]
-            print(df_au.shape)
-            # Calculate SDC scores using correct label list
-            sdc_scores = self.prob_au(df_au, columns, labels, threshold=0.002)
-            
-            # Create DataFrame for heatmap
-            df_map = pd.DataFrame.from_dict(sdc_scores, orient='index', columns=["SDC"])
-            
-            # Plotting the heatmap
-            fig = plt.figure(figsize=(6, 6))
-            sns.heatmap(df_map, cmap='Purples', linewidths=0.7, annot=True)
-            plt.title("AU-Engagement Mapping Heatmap (SDC Scores)")
-            plt.xlabel("SDC Score")
-            plt.ylabel("Action Units")
-            plt.show()
+        Returns
+        -------
+        df_map: pandas DataFrame
+            DataFrame containing SDC scores for each AU
+        fig: matplotlib figure object
+            Heatmap plot of SDC scores
+        """
+        # Extract AU columns
+        df_au = df.loc[:, "AU01_r":"AU45_r"]
+        columns = df_au.columns
+        df_y = df["Label_y"]
+        df_au = pd.concat([df_au, df_y], axis=1)
+        
+        # Define your engagement labels
+        labels = ["disengaged", "partially engaged", "engaged"]
 
-            return fig, df_map
+        # Calculate SDC scores
+        sdc_scores = self.prob_au(df_au, columns, labels, threshold=0.002)
+        
+        # Create DataFrame for heatmap
+        df_map = pd.DataFrame.from_dict(sdc_scores, orient='index', columns=["SDC"]).sort_values(by="SDC", ascending=False)
+        
+        # Plotting the heatmap
+        fig = plt.figure(figsize=(6, 6))
+        sns.heatmap(df_map, cmap='Purples', linewidths=0.7, annot=True)
+        plt.title("AU Discriminative Power (SDC Scores)")
+        plt.xlabel("SDC Score")
+        plt.ylabel("Action Units")
+        plt.show()
 
+        return fig, df_map
