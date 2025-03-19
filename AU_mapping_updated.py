@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 class AU_mapping():
-    def prob_au(df, columns, labels, threshold=0.002):
+    def prob_au(self, df, columns, labels, threshold=0.002):
         """
         Calculate Statistical Discriminative Coefficient (SDC) for each AU.
         
@@ -18,7 +18,9 @@ class AU_mapping():
             dict: Dictionary with AUs as keys and SDC scores as values.
         """
         sdc_scores = {}
+        print(df)
         total_samples = df.shape[0]  # Total number of samples
+
 
         # Calculate P(c) for each AU (overall activation rate across all labels)
         P_c = {c: df[df[c] >= threshold].shape[0] / total_samples for c in columns}
