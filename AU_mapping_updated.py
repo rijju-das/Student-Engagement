@@ -67,7 +67,8 @@ class AU_mapping():
         
         # Define your engagement labels
         labels = ["disengaged", "partially engaged", "engaged"]
-
+        l = df_au.shape[0]
+        print(l)
         # Calculate SDC scores
         sdc_scores = self.prob_au(df_au, columns, labels, threshold=0.002)
         
