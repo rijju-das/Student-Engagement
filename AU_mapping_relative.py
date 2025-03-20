@@ -43,11 +43,16 @@ class AU_mapping():
         # df_ratio = df_ratio.sort_values(by=labels[0], ascending=False)
         
         # Plot the heatmap with multiple columns (one per label)
-        fig = plt.figure(figsize=(8, 6))
-        sns.heatmap(df_ratio, cmap='magma_r', linewidths=0.7, annot=True,vmin=0.5,vmax=2.7)
+        fig = plt.figure(figsize=(12, 8))
+        ax=sns.heatmap(df_ratio, cmap='magma_r', linewidths=0.7, annot=True,vmin=0.5,vmax=2.7, annot_kws={"size": 16})
         # plt.title("AU Activation Ratio per Label\n(Ratio = P(AU|Label)/P(AU))")
-        plt.xlabel("Label")
-        plt.ylabel("Action Units")
+        
+        plt.xticks(fontsize=18)
+        plt.yticks(fontsize=18)
+
+        # Increase font size for color bar ticks and label
+        cbar = ax.collections[0].colorbar
+        cbar.ax.tick_params(labelsize=18)
         plt.show()
         
         return fig, df_ratio

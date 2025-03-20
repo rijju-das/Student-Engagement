@@ -73,14 +73,20 @@ class AU_mapping():
         sdc_scores = self.prob_au(df_au, columns, labels, threshold=0.1)
         
         # Create DataFrame for heatmap
-        df_map = pd.DataFrame.from_dict(sdc_scores, orient='index', columns=["SDC"])
+        df_map = pd.DataFrame.from_dict(sdc_scores, orient='index', columns=["Statistical Discriminant Coefficient (SDC)"])
         
         # Plotting the heatmap
-        fig = plt.figure(figsize=(5, 6))
-        sns.heatmap(df_map, cmap='Purples', linewidths=0.7, annot=True)
-        plt.title("AU Discriminative Power (SDC Scores)")
-        plt.xlabel("SDC Score")
-        plt.ylabel("Action Units")
+        fig = plt.figure(figsize=(6, 6))
+        ax=sns.heatmap(df_map, cmap='magma', linewidths=0.7, annot=False, vmin=-0.12,vmax=0, annot_kws={"size": 16})
+        # plt.title("AU Discriminative Power (SDC Scores)")
+        # plt.xlabel("SDC Score")
+        # plt.ylabel("Action Units")
+        plt.xticks(fontsize=12)
+        plt.yticks(fontsize=12)
+
+        # Increase font size for color bar ticks and label
+        cbar = ax.collections[0].colorbar
+        cbar.ax.tick_params(labelsize=12)
         plt.show()
 
         return fig, df_map

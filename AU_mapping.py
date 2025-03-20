@@ -48,6 +48,13 @@ class AU_mapping():
       df_au = pd.concat([df_au,df_y], axis=1)
       df_map = pd.DataFrame([self.prob_au(df_au,0,columns),self.prob_au(df_au,1,columns),self.prob_au(df_au,2,columns)],index=["Disengaged","Partially engaged","Engaged"]).T
   
-      fig = plt.figure(figsize=(8,6))
-      sns.heatmap(df_map, cmap ='Purples', linewidths = 0.70, annot=True, vmin=0,vmax=1)
+      fig = plt.figure(figsize=(12,8))
+      ax=sns.heatmap(df_map, cmap ='magma_r', linewidths = 0.70, annot=True, vmin=0,vmax=1, annot_kws={"size": 16})
+      
+      plt.xticks(fontsize=18)
+      plt.yticks(fontsize=18)
+
+      # Increase font size for color bar ticks and label
+      cbar = ax.collections[0].colorbar
+      cbar.ax.tick_params(labelsize=18)
       return fig, df_map

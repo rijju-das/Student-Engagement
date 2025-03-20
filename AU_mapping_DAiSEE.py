@@ -43,12 +43,18 @@ class AU_mapping():
         
         # Plot the activation rates as a heatmap.
         # Since there is only one column, the heatmap will be a single-column plot.
-        fig = plt.figure(figsize=(4, 6))
-        sns.heatmap(activation_df, cmap='magma_r', annot=True, linewidths=0.7, cbar_kws={'label': 'Activation Rate'},
-                    vmin=0, vmax=1)
-        plt.title("Overall AU Activation Rates")
-        plt.xlabel("Activation Rate")
-        plt.ylabel("Action Units")
+        fig = plt.figure(figsize=(6, 6))
+        ax= sns.heatmap(activation_df, cmap='magma_r', annot=True, linewidths=0.7,
+                    vmin=0, vmax=1, annot_kws={"size": 16})
+        # plt.title("Overall AU Activation Rates")
+        # plt.xlabel("Activation Rate")
+        # plt.ylabel("Action Units")
+        plt.xticks(fontsize=18)
+        plt.yticks(fontsize=18)
+
+        # Increase font size for color bar ticks and label
+        cbar = ax.collections[0].colorbar
+        cbar.ax.tick_params(labelsize=18)
         plt.tight_layout()
         plt.show()
         
