@@ -66,7 +66,7 @@ class AU_mapping():
         df_au = pd.concat([df_au, df_y], axis=1)
         
         # Define your engagement labels
-        labels = ["disengaged", "partially engaged", "engaged"]
+        labels = [0, 1, 2]
         l = df_au.shape[0]
         print(l)
         # Calculate SDC scores
