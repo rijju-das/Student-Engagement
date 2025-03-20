@@ -43,7 +43,7 @@ class AU_mapping():
         
         # Plot the heatmap with multiple columns (one per label)
         fig = plt.figure(figsize=(8, 6))
-        sns.heatmap(df_ratio, cmap='viridis', linewidths=0.7, annot=True)
+        sns.heatmap(df_ratio, cmap='viridis', linewidths=0.7, annot=True,vmin=0,vmax=1)
         plt.title("AU Activation Ratio per Label\n(Ratio = P(AU|Label)/P(AU))")
         plt.xlabel("Label")
         plt.ylabel("Action Units")
