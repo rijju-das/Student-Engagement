@@ -18,7 +18,7 @@ class AU_mapping():
       d = df.loc[df["Label_y"]==label].shape[0]
       
       for c in column:
-          df1 = df.loc[(df[c] >=0.002) & (df['Label_y'] == label)]
+          df1 = df.loc[(df[c] >=0.1) & (df['Label_y'] == label)]
           dic[c]=round((df1.shape[0]/d),2)
       return dic
   def au_heatmap(self,df):
@@ -48,6 +48,6 @@ class AU_mapping():
       df_au = pd.concat([df_au,df_y], axis=1)
       df_map = pd.DataFrame([self.prob_au(df_au,0,columns),self.prob_au(df_au,1,columns),self.prob_au(df_au,2,columns)],index=["Disengaged","Partially engaged","Engaged"]).T
   
-      fig = plt.figure(figsize=(5,5))
-      sns.heatmap(df_map, cmap ='Purples', linewidths = 0.70, vmin=0,vmax=1)
+      fig = plt.figure(figsize=(8,6))
+      sns.heatmap(df_map, cmap ='Purples', linewidths = 0.70, annot=True, vmin=0,vmax=1)
       return fig, df_map

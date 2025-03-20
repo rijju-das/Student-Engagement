@@ -3,7 +3,7 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 class AU_mapping():
-    def prob_au(self, df, columns, labels, threshold=0.002):
+    def prob_au(self, df, columns, labels, threshold=0.1):
         # Create a dictionary of dictionaries: {AU: {label: ratio, ...}, ...}
         ratios = {}
         total_samples = df.shape[0]
@@ -35,16 +35,17 @@ class AU_mapping():
         labels = [0, 1, 2]
         
         # Calculate the ratio for each AU and each label
-        ratios = self.prob_au(df_au, columns, labels, threshold=0.002)
+        ratios = self.prob_au(df_au, columns, labels, threshold=0.1)
         # Create a DataFrame from the ratios dictionary
         df_ratio = pd.DataFrame(ratios).T
+        df_ratio.columns = ["Disengaged", "Partially engaged", "Engaged"]
         # Optionally, sort the rows by one of the label columns
-        df_ratio = df_ratio.sort_values(by=labels[0], ascending=False)
+        # df_ratio = df_ratio.sort_values(by=labels[0], ascending=False)
         
         # Plot the heatmap with multiple columns (one per label)
         fig = plt.figure(figsize=(8, 6))
-        sns.heatmap(df_ratio, cmap='viridis', linewidths=0.7, annot=True,vmin=0,vmax=1)
-        plt.title("AU Activation Ratio per Label\n(Ratio = P(AU|Label)/P(AU))")
+        sns.heatmap(df_ratio, cmap='magma_r', linewidths=0.7, annot=True,vmin=0.5,vmax=2.7)
+        # plt.title("AU Activation Ratio per Label\n(Ratio = P(AU|Label)/P(AU))")
         plt.xlabel("Label")
         plt.ylabel("Action Units")
         plt.show()

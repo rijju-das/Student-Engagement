@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 class AU_mapping():
-    def prob_au(self, df, columns, labels, threshold=0.002):
+    def prob_au(self, df, columns, labels, threshold=0.1):
         """
         Calculate Statistical Discriminative Coefficient (SDC) for each AU.
         
@@ -37,7 +37,7 @@ class AU_mapping():
                 P_c_li = activated_count / d  # P(c | l_i)
                 
                 if P_c[c] > 0:  # Avoid division by zero
-                    sdc += P_li[label] * (P_c_li / P_c[c])
+                    sdc += P_li[label] * np.log(P_c_li / P_c[c])
             
             sdc_scores[c] = round(sdc, 4)
         
@@ -70,13 +70,13 @@ class AU_mapping():
         l = df_au.shape[0]
         print(l)
         # Calculate SDC scores
-        sdc_scores = self.prob_au(df_au, columns, labels, threshold=0.002)
+        sdc_scores = self.prob_au(df_au, columns, labels, threshold=0.1)
         
         # Create DataFrame for heatmap
-        df_map = pd.DataFrame.from_dict(sdc_scores, orient='index', columns=["SDC"]).sort_values(by="SDC", ascending=False)
+        df_map = pd.DataFrame.from_dict(sdc_scores, orient='index', columns=["SDC"])
         
         # Plotting the heatmap
-        fig = plt.figure(figsize=(6, 6))
+        fig = plt.figure(figsize=(5, 6))
         sns.heatmap(df_map, cmap='Purples', linewidths=0.7, annot=True)
         plt.title("AU Discriminative Power (SDC Scores)")
         plt.xlabel("SDC Score")
