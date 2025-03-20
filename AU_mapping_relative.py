@@ -35,7 +35,7 @@ class AU_mapping():
         labels = [0, 1, 2]
         
         # Calculate the ratio for each AU and each label
-        ratios = self.au_label_ratio(df_au, columns, labels, threshold=0.002)
+        ratios = self.prob_au(df_au, columns, labels, threshold=0.002)
         # Create a DataFrame from the ratios dictionary
         df_ratio = pd.DataFrame(ratios).T
         # Optionally, sort the rows by one of the label columns
