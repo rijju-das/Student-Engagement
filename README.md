@@ -5,18 +5,7 @@ With the spirit of reproducible research, this repository includes a complete co
 > R. Das, and S. Dev, Optimizing Student Engagement Detection using Facial and Behavioral Features, *Neural Computing and Applications*, 2025.
 
 
-```
-Student-Engagement/
-├── AU\_mappings/        # Map OpenFace AU outputs to final engagement features
-├── Feature\_extract/    # Run OpenFace, preprocess raw video → features
-├── ML\_models/          # Classical ML training & evaluation scripts
-├── DL\_models/          # Deep-learning training & transfer‐learning scripts
-├── Results/            # Scripts/notebooks to generate tables & figures
-└── WACV data/          # Preprocessed WACV source dataset files
 
-```
-
----
 
 ## Setup
 
