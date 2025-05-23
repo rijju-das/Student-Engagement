@@ -14,7 +14,7 @@ Student-Engagement/
 ├── Results/            # Scripts/notebooks to generate tables & figures
 └── WACV data/          # Preprocessed WACV source dataset files
 
-````
+```
 
 ---
 
@@ -24,7 +24,7 @@ Student-Engagement/
    ```bash
    git clone https://github.com/rijju-das/Student-Engagement.git
    cd Student-Engagement
-````
+   ```
 
 2. **Install dependencies**
 
