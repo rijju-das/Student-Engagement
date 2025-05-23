@@ -8,7 +8,10 @@ With the spirit of reproducible research, this repository includes a complete co
 
 This project explores video-based frame-level engagement classification in students using facial features. It combines classical ML (XGBoost) and deep learning (CNN with transfer learning) techniques, evaluated on DAiSEE and WACV datasets.
 
----
+## ⚙️ Setup Instructions
 
-## 🗂 Repository Structure
+### 1. Clone Repository
+```bash
+git clone https://github.com/rijju-das/Student-Engagement.git
+cd Student-Engagement/Scripts
 
