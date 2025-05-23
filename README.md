@@ -22,25 +22,6 @@ With the spirit of reproducible research, this repository includes a complete co
    ```
 
 ---
-
-## 1. AU Mappings
-
-Convert raw OpenFace AU outputs into aggregate engagement features.
-
-```bash
-cd AU_mappings
-python map_aus.py \
-  --input_dir ../Feature_extract/openface_output \
-  --output_dir ./mapped_features
-```
-
-* **map\_aus.py**
-  Reads per‐frame AUs (`.csv`) and computes time‐windowed stats (mean, std, etc.) for each AU.
-
-Mapped features land in `AU_mappings/mapped_features/`.
-
-
-
 ## 2. Feature Extraction
 
 Extract facial landmarks, head pose, gaze, and AUs via OpenFace.
@@ -60,6 +41,25 @@ python preprocess_openface.py \
 
 * **extract\_openface.sh** – batch-calls the OpenFace binary.
 * **preprocess\_openface.py** – cleans NaNs, aligns frame rates, merges logs.
+
+
+## 1. AU Mappings
+
+Convert raw OpenFace AU outputs into aggregate engagement features.
+
+```bash
+cd AU_mappings
+python map_aus.py \
+  --input_dir ../Feature_extract/openface_output \
+  --output_dir ./mapped_features
+```
+
+* **map\_aus.py**
+  Reads per‐frame AUs (`.csv`) and computes time‐windowed stats (mean, std, etc.) for each AU.
+
+Mapped features land in `AU_mappings/mapped_features/`.
+
+
 
 
 
