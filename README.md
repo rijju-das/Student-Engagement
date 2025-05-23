@@ -1,8 +1,8 @@
 # Optimizing Student Engagement Detection using Facial and Behavioral Features (accepted in NCAA 2025)
 
-This repository accompanies the paper:  
-**"Enhancing frame-level student engagement classification through knowledge transfer techniques" (Applied Intelligence, 2024)**  
-Authors: Riju Das and Soujanya Dev
+With the spirit of reproducible research, this repository includes a complete collection of codes required to generate the results and diagrams presented in the paper:
+
+> R. Das, and S. Dev, Optimizing Student Engagement Detection using Facial and Behavioral Features, *Neural Computing and Applications*, 2025.
 
 
 ## Overview
