@@ -24,67 +24,11 @@ cd Student-Engagement
 pip install numpy pandas scikit-learn xgboost keras tensorflow matplotlib
 ```
 
-### 3. Prepare Datasets
+## AU mappings
 
-Create the following directory structure and add your `features.csv` and `labels.csv`:
+## run ML models
 
-```
-Data/
-├── DAiSEE/
-│   ├── features.csv
-│   └── labels.csv
-└── WACV/
-    ├── features.csv
-    └── labels.csv
-```
-
-Each CSV should contain OpenFace-extracted features and frame-level engagement labels.
-
----
-
-## Reproducing Results
-
-### Step 1: Data Preprocessing
-
-Use `DataFormatter.py` to format and split the data:
-
-```python
-from DataFormatter import DataFormatter
-
-# For DAiSEE dataset
-formatter = DataFormatter(input_dir='../Data/DAiSEE', output_dir='./processed/DAiSEE', seq_len=16)
-formatter.create_datasets()
-
-# For WACV dataset
-formatter = DataFormatter(input_dir='../Data/WACV', output_dir='./processed/WACV', seq_len=16)
-formatter.create_datasets()
-```
-
-### Step 2: XGBoost Baseline
-
-Train and evaluate the XGBoost model:
-
-```bash
-jupyter nbconvert --to notebook --execute XGB_pred.ipynb
-```
-
-### Step 3: CNN with Transfer Learning
-
-Train CNN on WACV and fine-tune on DAiSEE:
-
-```bash
-jupyter nbconvert --to notebook --execute Tab_CNN.ipynb
-```
-
-
-## 📌 Notes on Scripts
-
-- `DataFormatter.py`: Splits data into train/val/test and reshapes for temporal modeling.
-- `XGB_pred.ipynb`: Implements an XGBoost model using tabular features.
-- `Tab_CNN.ipynb`: Defines and trains a CNN architecture; supports knowledge transfer.
-
----
-
+## run DL models
 ## 📖 Citation
 
 If you use this repository in your research, please cite:
