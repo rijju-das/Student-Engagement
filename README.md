@@ -1,4 +1,4 @@
-# Frame-Level Student Engagement Classification
+# Optimizing Student Engagement Detection using Facial and Behavioral Features
 
 This repository accompanies the paper:  
 **"Enhancing frame-level student engagement classification through knowledge transfer techniques" (Applied Intelligence, 2024)**  
@@ -7,7 +7,7 @@ Authors: Riju Das and Soujanya Dev
 
 ## Overview
 
-This project presents a pipeline to classify student engagement at the video frame level using facial features. It combines classical machine learning (XGBoost) with deep learning approaches (CNN with transfer learning). The experiments use two datasets: **DAiSEE** (target) and **WACV** (source).
+This project presents a pipeline to classify student engagement using facial features at the video frame level. It combines classical machine learning (XGBoost) with deep learning approaches (CNN with transfer learning). The experiments use two datasets: **DAiSEE** (target) and **WACV** (source).
 
 ---
 
