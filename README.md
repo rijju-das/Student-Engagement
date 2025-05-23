@@ -18,7 +18,7 @@ With the spirit of reproducible research, this repository includes a complete co
 2. **Install dependencies**
 
    ```bash
-   pip install numpy pandas scikit-learn xgboost tensorflow keras matplotlib
+   pip install numpy pandas scikit-learn xgboost tensorflow keras matplotlib mediapipe
    ```
 
 ---
