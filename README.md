@@ -18,7 +18,7 @@ Student-Engagement/
 
 ---
 
-## ⚙️ Setup
+## Setup
 
 1. **Clone repo**  
    ```bash
@@ -50,7 +50,7 @@ python map_aus.py \
 
 Mapped features land in `AU_mappings/mapped_features/`.
 
----
+
 
 ## 2. Feature Extraction
 
@@ -72,7 +72,7 @@ python preprocess_openface.py \
 * **extract\_openface.sh** – batch-calls the OpenFace binary.
 * **preprocess\_openface.py** – cleans NaNs, aligns frame rates, merges logs.
 
----
+
 
 ## 3. Classical ML Models
 
@@ -80,20 +80,23 @@ Train and evaluate XGBoost, SVM, and Random Forest baselines.
 
 ```bash
 cd ML_models
-
+```
 # Train XGBoost
+```bash
 python train_xgb.py \
   --features_dir ../AU_mappings/mapped_features \
   --out_model models/xgb_model.pkl \
   --report_dir results/xgb
-
+```
 # Train SVM
+```bash
 python train_svm.py \
   --features_dir ../AU_mappings/mapped_features \
   --out_model models/svm_model.pkl \
   --report_dir results/svm
-
+```
 # Evaluate all
+```bash
 python evaluate_ml.py \
   --models_dir models \
   --test_data_dir "../WACV data" \
