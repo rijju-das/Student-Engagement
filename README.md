@@ -14,4 +14,5 @@ This project explores video-based frame-level engagement classification in stude
 ```bash
 git clone https://github.com/rijju-das/Student-Engagement.git
 cd Student-Engagement/Scripts
-
+### 2. Install dependencies
+pip install numpy pandas scikit-learn xgboost keras tensorflow matplotlib
