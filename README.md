@@ -4,11 +4,11 @@ With the spirit of reproducible research, this repository includes a complete co
 
 > R. Das, and S. Dev, Optimizing Student Engagement Detection using Facial and Behavioral Features, *Neural Computing and Applications*, 2025.
 
-## 📚 Overview
+## Overview
 
 This project explores video-based frame-level engagement classification in students using facial features. It combines classical ML (XGBoost) and deep learning (CNN with transfer learning) techniques, evaluated on DAiSEE and WACV datasets.
 
-## ⚙️ Setup Instructions
+## Setup Instructions
 
 ### 1. Clone Repository
 ```bash
