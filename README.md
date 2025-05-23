@@ -6,25 +6,6 @@ With the spirit of reproducible research, this repository includes a complete co
 
 Below is a proposed `README.md` for **Student-Engagement** that reflects the actual folders and implementation steps in your repository. Just copy this into the root `README.md` (replacing the existing one), and adjust any script names or flags if they differ slightly in your code.
 
-```markdown
-# Optimizing Student Engagement Detection using Facial and Behavioral Features  
-*Accepted in Neural Computing and Applications (2025)*
-
-R. Das and S. Dev
-
----
-
-## 📚 Overview
-
-This repository implements the full pipeline described in  
-**“Optimizing Student Engagement Detection using Facial and Behavioral Features”**  
-(Neural Computing & Applications, 2025). We fuse facial Action‐Unit cues and simple behavioral features, benchmark classical ML (XGBoost, SVM, RF) and deep‐learning models (CNN + transfer learning), and evaluate on DAiSEE (target) and WACV (source) datasets.
-
----
-
-## 📂 Repository Structure
-
-```
 
 Student-Engagement/
 ├── AU\_mappings/        # Map OpenFace AU outputs to final engagement features
