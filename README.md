@@ -1,4 +1,4 @@
-# Optimizing Student Engagement Detection using Facial and Behavioral Features
+# Optimizing Student Engagement Detection using Facial and Behavioral Features (accepted in NCAA 2025)
 
 This repository accompanies the paper:  
 **"Enhancing frame-level student engagement classification through knowledge transfer techniques" (Applied Intelligence, 2024)**  
