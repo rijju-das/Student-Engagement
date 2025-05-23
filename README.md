@@ -9,20 +9,6 @@ With the spirit of reproducible research, this repository includes a complete co
 
 This project presents a pipeline to classify student engagement using facial features at the video frame level. It combines classical machine learning (XGBoost) with deep learning approaches (CNN with transfer learning). The experiments use two datasets: **DAiSEE** (target) and **WACV** (source).
 
----
-
-## Repository Structure
-
-```
-Frame-level-student-engagement/
-├── Scripts/
-│   ├── DataFormatter.py       # Preprocessing and sequence formatting
-│   ├── XGB_pred.ipynb         # XGBoost classifier training & evaluation
-│   └── Tab_CNN.ipynb          # CNN with transfer learning
-└── README.md                  # Documentation and usage
-```
-
----
 
 ## Setup Instructions
 ### 1. Clone Repository
