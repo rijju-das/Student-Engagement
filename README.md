@@ -37,8 +37,8 @@ If you use this repository in your research, please cite:
 @article{das2024enhancing,
   title={Optimizing Student Engagement Detection using Facial and Behavioral Features},
   author={Das, R and Dev, S},
-  journal={NCCA},
-  year={2024},
+  journal={accepted in NCCA},
+  year={2025},
 }
 ```
 
