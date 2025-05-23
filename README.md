@@ -35,9 +35,9 @@ If you use this repository in your research, please cite:
 
 ```bibtex
 @article{das2024enhancing,
-  title={Enhancing frame-level student engagement classification through knowledge transfer techniques},
+  title={Optimizing Student Engagement Detection using Facial and Behavioral Features},
   author={Das, R and Dev, S},
-  journal={Applied Intelligence},
+  journal={NCCA},
   year={2024},
 }
 ```
