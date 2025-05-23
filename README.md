@@ -4,9 +4,8 @@ With the spirit of reproducible research, this repository includes a complete co
 
 > R. Das, and S. Dev, Optimizing Student Engagement Detection using Facial and Behavioral Features, *Neural Computing and Applications*, 2025.
 
-Below is a proposed `README.md` for **Student-Engagement** that reflects the actual folders and implementation steps in your repository. Just copy this into the root `README.md` (replacing the existing one), and adjust any script names or flags if they differ slightly in your code.
 
-
+```
 Student-Engagement/
 ├── AU\_mappings/        # Map OpenFace AU outputs to final engagement features
 ├── Feature\_extract/    # Run OpenFace, preprocess raw video → features
