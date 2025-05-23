@@ -4,16 +4,14 @@ This repository accompanies the paper:
 **"Enhancing frame-level student engagement classification through knowledge transfer techniques" (Applied Intelligence, 2024)**  
 Authors: Riju Das and Soujanya Dev
 
-<<<<<<< HEAD
----
 
-## 📚 Overview
+## Overview
 
 This project presents a pipeline to classify student engagement at the video frame level using facial features. It combines classical machine learning (XGBoost) with deep learning approaches (CNN with transfer learning). The experiments use two datasets: **DAiSEE** (target) and **WACV** (source).
 
 ---
 
-## 🗂 Repository Structure
+## Repository Structure
 
 ```
 Frame-level-student-engagement/
@@ -26,7 +24,7 @@ Frame-level-student-engagement/
 
 ---
 
-## ⚙️ Setup Instructions
+## Setup Instructions
 
 ### 1. Clone the Repository
 
@@ -40,13 +38,12 @@ This project explores video-based frame-level engagement classification in stude
 ## Setup Instructions
 
 ### 1. Clone Repository
->>>>>>> e531e95246e8914f241edf4454b687718b16316c
+
 ```bash
 git clone https://github.com/rijju-das/Student-Engagement.git
 cd Student-Engagement/Scripts
 ```
 
-<<<<<<< HEAD
 ### 2. Install Dependencies
 
 ```bash
@@ -71,7 +68,7 @@ Each CSV should contain OpenFace-extracted features and frame-level engagement l
 
 ---
 
-## 🧪 Reproducing Results
+## Reproducing Results
 
 ### Step 1: Data Preprocessing
 
@@ -105,18 +102,6 @@ Train CNN on WACV and fine-tune on DAiSEE:
 jupyter nbconvert --to notebook --execute Tab_CNN.ipynb
 ```
 
----
-
-## 📊 Results
-
-| Model            | Dataset | Accuracy (%) | Notes                            |
-|------------------|---------|--------------|----------------------------------|
-| XGBoost          | DAiSEE  | xx.xx        | Baseline using tabular features |
-| CNN + Transfer   | DAiSEE  | yy.yy        | Pretrained on WACV, fine-tuned on DAiSEE |
-
-> Replace `xx.xx` and `yy.yy` with your actual experimental results.
-
----
 
 ## 📌 Notes on Scripts
 
@@ -139,19 +124,3 @@ If you use this repository in your research, please cite:
 }
 ```
 
----
-
-## 👤 Contact
-
-**Riju Das**  
-Ph.D. Scholar, University College Dublin  
-GitHub: [rijju-das](https://github.com/rijju-das)  
-Email: riju.das@ucd.ie
-
----
-=======
-### 1. Clone Repository
-```bash
-pip install numpy pandas scikit-learn xgboost keras tensorflow matplotlib
-```
->>>>>>> e531e95246e8914f241edf4454b687718b16316c
