@@ -15,7 +15,7 @@ This project presents a pipeline to classify student engagement using facial fea
 
 ```bash
 git clone https://github.com/rijju-das/Student-Engagement.git
-cd Student-Engagement/Scripts
+cd Student-Engagement
 ```
 
 ### 2. Install Dependencies
