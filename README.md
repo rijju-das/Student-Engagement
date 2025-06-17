@@ -85,7 +85,7 @@ All scripts in `ML_models/` assume you’ve already generated and merged your fe
   cd ML_models
   python train_model_ML.py \
     --data_dir "../WACV data" \
-    --output_dir "../Results"
+    --output_dir "../ML/Results"
 
 
 ## 4. Deep-Learning Models
