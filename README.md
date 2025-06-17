@@ -47,6 +47,25 @@ This step uses the [OpenFace](https://github.com/TadasBaltrusaitis/OpenFace) too
 These files contain your extracted OpenFace features and labels, ready for the next mapping and modeling steps.  
 
 
+### 2.2. MediaPipe Feature Extraction
+
+This step uses Google’s [MediaPipe FaceMesh](https://github.com/google/mediapipe) to extract 468-point facial landmarks and then merges them with your OpenFace features.
+
+- **How to Run**  
+  1. Ensure both `Extract_MediaPipe_features.py` and `mediaPipeFeatureExtractor.py` live in `Feature_extract/`.  
+  2. From that directory, run:
+     ```bash
+     cd Feature_extract
+     python Extract_MediaPipe_features.py
+     ```
+
+- **Outputs**  
+  The script will read your OpenFace CSVs, extract MediaPipe landmarks for each frame, merge on `ImageID`, and write out three merged files to `WACV data/`:
+  - `merged_data0.csv`
+  - `merged_data1.csv`
+  - `merged_data2.csv`
+
+These merged CSVs contain both the 468 2D landmark coordinates and your previously extracted OpenFace features, ready for the subsequent mapping and modeling steps.  
 
 
 
