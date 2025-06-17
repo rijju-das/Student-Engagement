@@ -68,40 +68,25 @@ This step uses Google’s [MediaPipe FaceMesh](https://github.com/google/mediapi
 These merged CSVs contain both the 468 2D landmark coordinates and your previously extracted OpenFace features, ready for the subsequent mapping and modeling steps.  
 
 
+## 3. Classical ML Model Training
 
+All scripts in `ML_models/` assume you’ve already generated and merged your feature CSVs under `WACV data/`.
 
-## 3. Classical ML Models
+- **Scripts & folders**  
+  - `ML_classification.py`  
+    Defines the classification routines for Decision Tree, SVM, Random Forest & XGBoost.  
+  - `train_model_ML.py`  
+    Orchestrates the end-to-end ML pipeline: loads your merged CSVs, trains each classifier, and saves results.  
+  - `trained_models/`  
+    Where all trained model files are written.
 
-Train and evaluate XGBoost, SVM, and Random Forest baselines.
+- **How to run**  
+  ```bash
+  cd ML_models
+  python train_model_ML.py \
+    --data_dir "../WACV data" \
+    --output_dir "../Results/ML"
 
-```bash
-cd ML_models
-```
-# Train XGBoost
-```bash
-python train_xgb.py \
-  --features_dir ../AU_mappings/mapped_features \
-  --out_model models/xgb_model.pkl \
-  --report_dir results/xgb
-```
-# Train SVM
-```bash
-python train_svm.py \
-  --features_dir ../AU_mappings/mapped_features \
-  --out_model models/svm_model.pkl \
-  --report_dir results/svm
-```
-# Evaluate all
-```bash
-python evaluate_ml.py \
-  --models_dir models \
-  --test_data_dir "../WACV data" \
-  --out_csv results/ml_summary.csv
-```
-
-* **train\_xgb.py**, **train\_svm.py**, **evaluate\_ml.py** each support `--help` for more flags.
-
----
 
 ## 4. Deep-Learning Models
 
