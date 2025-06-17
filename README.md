@@ -21,26 +21,40 @@ With the spirit of reproducible research, this repository includes a complete co
    pip install numpy pandas scikit-learn xgboost tensorflow keras matplotlib mediapipe
    ```
 
----
 ## 2. Feature Extraction
 
-Extract facial landmarks, head pose, gaze, and AUs via OpenFace.
+The `Feature_extract/` folder contains two pipelines:
+
+1. **OpenFace features**  
+2. **MediaPipe FaceMesh landmarks**
+
+---
+
+### 2.1. OpenFace Features
+
+Generates per-frame Action Units, head pose, gaze and landmarks using OpenFace v2.2.
+
+1. **Install/OpenFace setup**  
+   - Download and build OpenFace; ensure the `Feature_extract/OpenFace` binary is on your `PATH`.
+
+2. **Prepare your frame folders**  
+   Place your frame sequences under:
+   WACV data/
+      ├── dataset/1/
+      ├── dataset/2/
+      └── dataset/3/
+
+4. **Run the notebook**  
+This will:
+- Process each folder (`1`, `2`, `3`)
+- Produce `processedData0.csv`, `processedData1.csv`, `processedData2.csv`
+- Concatenate into `processedDataOF.csv`  
+and save all CSVs under `WACV data/`.
 
 ```bash
 cd Feature_extract
-# 1) run OpenFace on your video folder
-bash extract_openface.sh \
-  --videos_dir "../WACV data/videos" \
-  --out_dir ./openface_output
+jupyter nbconvert --to notebook --execute Extract_OpenFace_features.ipynb
 
-# 2) (optional) post‐process raw logs
-python preprocess_openface.py \
-  --input_dir ./openface_output \
-  --output_dir ../AU_mappings/openface_clean
-```
-
-* **extract\_openface.sh** – batch-calls the OpenFace binary.
-* **preprocess\_openface.py** – cleans NaNs, aligns frame rates, merges logs.
 
 
 ## 1. AU Mappings
