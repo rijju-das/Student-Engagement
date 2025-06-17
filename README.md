@@ -31,7 +31,7 @@ The `Feature_extract/` folder contains two pipelines:
 ---
 
 ### 2.1. OpenFace Features
-
+This pipeline builds upon the OpenFace toolkit (https://github.com/TadasBaltrusaitis/OpenFace.git) by Tadas Baltrušaitis et al. for per-frame extraction of Action Units, gaze, and head pose.
 Generates per-frame Action Units, head pose, gaze, and landmarks using OpenFace v2.2.
 
 1. **Install/OpenFace setup**  
