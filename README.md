@@ -47,35 +47,6 @@ This step uses the official [OpenFace](https://github.com/TadasBaltrusaitis/Open
 These files contain your extracted OpenFace features and labels, ready for the next mapping and modeling steps.  
 
 
-4. **Run the notebook**  
-This will:
-- Process each folder (`1`, `2`, `3`)
-- Produce `processedData0.csv`, `processedData1.csv`, `processedData2.csv`
-- Concatenate into `processedDataOF.csv`  
-and save all CSVs under `WACV data/`.
-
-```bash
-cd Feature_extract
-jupyter nbconvert --to notebook --execute Extract_OpenFace_features.ipynb
-
-
-
-## 1. AU Mappings
-
-Convert raw OpenFace AU outputs into aggregate engagement features.
-
-```bash
-cd AU_mappings
-python map_aus.py \
-  --input_dir ../Feature_extract/openface_output \
-  --output_dir ./mapped_features
-```
-
-* **map\_aus.py**
-  Reads per‐frame AUs (`.csv`) and computes time‐windowed stats (mean, std, etc.) for each AU.
-
-Mapped features land in `AU_mappings/mapped_features/`.
-
 
 
 
