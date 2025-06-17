@@ -32,7 +32,7 @@ The `Feature_extract/` folder contains two pipelines:
 
 ### 2.1. OpenFace Feature Extraction
 
-This step uses the official [OpenFace](https://github.com/TadasBaltrusaitis/OpenFace) toolkit by Tadas Baltrušaitis et al. to extract per‐frame Action Units, head pose, gaze, and landmarks.
+This step uses the [OpenFace](https://github.com/TadasBaltrusaitis/OpenFace) toolkit by Tadas Baltrušaitis et al. to extract per‐frame Action Units, head pose, gaze, and facial landmarks.
 
 - **How to Run**  
   Open and execute the `Extract_OpenFace_features.ipynb` notebook (either in Google Colab or on your local machine within the project’s environment).  
