@@ -32,7 +32,7 @@ The `Feature_extract/` folder contains two pipelines:
 
 ### 2.1. OpenFace Features
 
-Generates per-frame Action Units, head pose, gaze and landmarks using OpenFace v2.2.
+Generates per-frame Action Units, head pose, gaze, and landmarks using OpenFace v2.2.
 
 1. **Install/OpenFace setup**  
    - Download and build OpenFace; ensure the `Feature_extract/OpenFace` binary is on your `PATH`.
