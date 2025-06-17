@@ -30,19 +30,22 @@ The `Feature_extract/` folder contains two pipelines:
 
 ---
 
-### 2.1. OpenFace Features
-This pipeline builds upon the OpenFace toolkit (https://github.com/TadasBaltrusaitis/OpenFace.git) by Tadas Baltrušaitis et al. for per-frame extraction of Action Units, gaze, and head pose.
-Generates per-frame Action Units, head pose, gaze, and landmarks using OpenFace v2.2.
+### 2.1. OpenFace Feature Extraction
 
-1. **Install/OpenFace setup**  
-   - Download and build OpenFace; ensure the `Feature_extract/OpenFace` binary is on your `PATH`.
+This step uses the official [OpenFace](https://github.com/TadasBaltrusaitis/OpenFace) toolkit to extract per‐frame Action Units, head pose, gaze, and landmarks.
 
-2. **Prepare your frame folders**  
-   Place your frame sequences under:
-   WACV data/
-      ├── dataset/1/
-      ├── dataset/2/
-      └── dataset/3/
+- **How to Run**  
+  Open and execute the `Extract_OpenFace_features.ipynb` notebook (either in Google Colab or on your local machine within the project’s environment).  
+
+- **Outputs**  
+  After completion, the notebook will write the following CSVs into your `WACV data/` folder:  
+  - `processedData0.csv`  
+  - `processedData1.csv`  
+  - `processedData2.csv`  
+  - `processedDataOF.csv`  
+
+These files contain your extracted OpenFace features and labels, ready for the next mapping and modeling steps.  
+
 
 4. **Run the notebook**  
 This will:
