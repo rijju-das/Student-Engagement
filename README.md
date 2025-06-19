@@ -98,9 +98,9 @@ The `DL_models/` folder houses all the pieces for your CNN-based engagement clas
 - **Model definitions** (`model_compare.py`, `model_freeze.py`, …) implementing backbones (ResNet, EfficientNet, etc.) and fusion variants.  
 - **Training scripts** (`train_files/train_hyper_*.py`)—each script targets a different feature set or architecture, often utilizing Optuna for hyperparameter optimization (HPO).  
 - **Evaluation scripts** (`evaluate_*.py`) which load saved weights and export performance CSVs to `Results/DL/`.  
-- **Visualization notebooks** (`visualize_*.ipynb`) for inspecting model focus (e.g., Grad-CAM heatmaps).
+- **Visualization notebooks** (`visualize_gradcam.ipynb`) for inspecting model focus using Grad-CAM heatmaps.
 
-Pick the dataset loader you need, run the matching `train_hyper_*.py` in `train_files/`, then execute `evaluate_*.py` and fire up the Grad-CAM notebook to complete your DL workflow.  
+Select the dataset loader you need, run the corresponding `train_hyper_*.py` file in `train_files/`, and then execute `evaluate_*.py`.
 
 
 ## Data
