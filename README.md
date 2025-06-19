@@ -90,8 +90,6 @@ All scripts in `ML_models/` assume you’ve already generated and merged your fe
 
 ## 4. Deep-Learning Models
 
-## 4. Deep-Learning Models
-
 The `DL_models/` folder houses all the pieces for your CNN-based engagement classifiers:
 
 - **Data loaders** (`data_IF*.py`, `data_IFOF*.py`, …) that wrap images and feature arrays into PyTorch datasets.  
