@@ -5,96 +5,125 @@ With the spirit of reproducible research, this repository includes a complete co
 > R. Das, and S. Dev, Optimizing Student Engagement Detection using Facial and Behavioral Features, *Neural Computing and Applications*, 2025.
 
 
-## Overview
-
-This project presents a pipeline to classify student engagement using facial features at the video frame level. It combines classical machine learning (XGBoost) with deep learning approaches (CNN with transfer learning). The experiments use two datasets: **DAiSEE** (target) and **WACV** (source).
 
 
-## Setup Instructions
-### 1. Clone Repository
+## Setup
 
-```bash
-git clone https://github.com/rijju-das/Student-Engagement.git
-cd Student-Engagement/Scripts
-```
+1. **Clone repo**  
+   ```bash
+   git clone https://github.com/rijju-das/Student-Engagement.git
+   cd Student-Engagement
+   ```
 
-### 2. Install Dependencies
+2. **Install dependencies**
 
-```bash
-pip install numpy pandas scikit-learn xgboost keras tensorflow matplotlib
-```
+   ```bash
+   pip install numpy pandas scikit-learn xgboost tensorflow keras matplotlib mediapipe torchviz
+   ```
 
-### 3. Prepare Datasets
+## 2. Feature Extraction
 
-Create the following directory structure and add your `features.csv` and `labels.csv`:
+The `Feature_extract/` folder contains two pipelines:
 
-```
-Data/
-├── DAiSEE/
-│   ├── features.csv
-│   └── labels.csv
-└── WACV/
-    ├── features.csv
-    └── labels.csv
-```
-
-Each CSV should contain OpenFace-extracted features and frame-level engagement labels.
+1. **OpenFace features**  
+2. **MediaPipe FaceMesh landmarks**
 
 ---
 
-## Reproducing Results
+### 2.1. OpenFace Feature Extraction
 
-### Step 1: Data Preprocessing
+This step uses the [OpenFace](https://github.com/TadasBaltrusaitis/OpenFace) toolkit by Tadas Baltrušaitis et al. to extract per‐frame Action Units, head pose, gaze, and facial landmarks.
 
-Use `DataFormatter.py` to format and split the data:
+- **How to Run**  
+  Open and execute the `Extract_OpenFace_features.ipynb` notebook (either in Google Colab or on your local machine within the project’s environment).  
 
-```python
-from DataFormatter import DataFormatter
+- **Outputs**  
+  After completion, the notebook will write the following CSVs into your `WACV data/` folder:  
+  - `processedData0.csv`  
+  - `processedData1.csv`  
+  - `processedData2.csv`  
+  - `processedDataOF.csv`  
 
-# For DAiSEE dataset
-formatter = DataFormatter(input_dir='../Data/DAiSEE', output_dir='./processed/DAiSEE', seq_len=16)
-formatter.create_datasets()
-
-# For WACV dataset
-formatter = DataFormatter(input_dir='../Data/WACV', output_dir='./processed/WACV', seq_len=16)
-formatter.create_datasets()
-```
-
-### Step 2: XGBoost Baseline
-
-Train and evaluate the XGBoost model:
-
-```bash
-jupyter nbconvert --to notebook --execute XGB_pred.ipynb
-```
-
-### Step 3: CNN with Transfer Learning
-
-Train CNN on WACV and fine-tune on DAiSEE:
-
-```bash
-jupyter nbconvert --to notebook --execute Tab_CNN.ipynb
-```
+These files contain your extracted OpenFace features and labels, ready for the next mapping and modeling steps.  
 
 
-## 📌 Notes on Scripts
+### 2.2. MediaPipe Feature Extraction
 
-- `DataFormatter.py`: Splits data into train/val/test and reshapes for temporal modeling.
-- `XGB_pred.ipynb`: Implements an XGBoost model using tabular features.
-- `Tab_CNN.ipynb`: Defines and trains a CNN architecture; supports knowledge transfer.
+This step uses Google’s [MediaPipe FaceMesh](https://github.com/google/mediapipe) to extract 468-point facial landmarks and then merges them with your OpenFace features.
+
+- **How to Run**  
+  1. Ensure both `Extract_MediaPipe_features.py` and `mediaPipeFeatureExtractor.py` live in `Feature_extract/`.  
+  2. From that directory, run:
+     ```bash
+     cd Feature_extract
+     python Extract_MediaPipe_features.py
+     ```
+
+- **Outputs**  
+  The script will read your OpenFace CSVs, extract MediaPipe landmarks for each frame, merge on `ImageID`, and write out three merged files to `WACV data/`:
+  - `merged_data0.csv`
+  - `merged_data1.csv`
+  - `merged_data2.csv`
+
+These merged CSVs contain both the 468 2D landmark coordinates and your previously extracted OpenFace features, ready for the subsequent mapping and modeling steps.  
+
+
+## 3. Classical ML Model Training
+
+All scripts in `ML_models/` assume you’ve already generated and merged your feature CSVs under `WACV data/`.
+
+- **Scripts & folders**  
+  - `ML_classification.py`  
+    Defines the classification routines for Decision Tree, SVM, Random Forest & XGBoost.  
+  - `train_model_ML.py`  
+    Orchestrates the end-to-end ML pipeline: loads your merged CSVs, trains each classifier, and saves results.  
+  - `trained_models/`  
+    Where all trained model files are written.
+
+- **How to run**  
+  ```bash
+  cd ML_models
+  python train_model_ML.py \
+    --data_dir "../WACV data" \
+    --output_dir "../ML/Results"
+
+
+## 4. Deep-Learning Models
+
+The `DL_models/` folder houses all the pieces for your CNN-based engagement classifiers:
+
+- **Data loaders** (`data_IF*.py`, `data_IFOF*.py`, …) that wrap images and feature arrays into PyTorch datasets.  
+- **Model definitions** (`model_compare.py`, `model_freeze.py`, …) implementing backbones (ResNet, EfficientNet, etc.) and fusion variants.  
+- **Training scripts** (`train_files/train_hyper_*.py`)—each script targets a different feature set or architecture, often utilizing Optuna for hyperparameter optimization (HPO).  
+- **Evaluation scripts** (`evaluate_*.py`) which load saved weights and export performance CSVs to `Results/DL/`.  
+- **Visualization notebooks** (`visualize_gradcam.ipynb`) for inspecting model focus using Grad-CAM heatmaps.
+
+Select the dataset loader you need, run the corresponding `train_hyper_*.py` file in `train_files/`, and then execute `evaluate_*.py`.
+
+
+## Data
+
+* **WACV data/** – Pre‐split source dataset (features & labels) used for pretraining.
+* **DAiSEE data/** – Download from [DAiSEE](https://sites.google.com/view/daisee/) and place in root as shown.
 
 ---
 
 ## 📖 Citation
 
-If you use this repository in your research, please cite:
-
 ```bibtex
-@article{das2024enhancing,
-  title={Enhancing frame-level student engagement classification through knowledge transfer techniques},
-  author={Das, R and Dev, S},
-  journal={Applied Intelligence},
-  year={2024},
+@article{das2025optimizing,
+  title={Optimizing Student Engagement Detection using Facial and Behavioral Features},
+  author={Das, R. and Dev, S.},
+  journal={Neural Computing and Applications},
+  year={2025},
 }
 ```
 
+---
+
+## 👤 Contact
+
+Riju Das ([riju.das@ucd.ie](mailto:riju.das@ucd.ie))
+Ph.D. Scholar – University College Dublin
+
+Feel free to raise an issue for any question or data‐path tweak.
