@@ -35,20 +35,20 @@ df = pd.concat([scalingDF(df_x),df_y],axis=1)
 from AU_mapping import AU_mapping
 map = AU_mapping()
 fig, df_mapAU = map.au_heatmap(df)
-fig.savefig(os.path.join(result_base_path,"Results/CondProb_AU_mapping.pdf"))
+fig.savefig(os.path.join(result_base_path,"Results/AU_features/CondProb_AU_mapping.pdf"))
 
 #Relative Activation Ratios for AUs across Engagement Labels.
 from AU_mapping_relative import AU_mapping
 map = AU_mapping()
 fig, df_mapR = map.au_heatmap(df)
-fig.savefig(os.path.join(result_base_path,"Results/Relative_AU_mapping.pdf"))
+fig.savefig(os.path.join(result_base_path,"Results/AU_features/Relative_AU_mapping.pdf"))
 
 
 #Log-Ratio Statistical Discriminative Coefficient (SDC) Scores for AUs.
 from AU_mapping_SDC import AU_mapping
 map = AU_mapping()
 fig, df_mapC = map.au_heatmap(df)
-fig.savefig(os.path.join(result_base_path,"Results/SDC_Scores.pdf"))
+fig.savefig(os.path.join(result_base_path,"Results/AU_features/SDC_Scores.pdf"))
 
 
 
@@ -57,5 +57,5 @@ plt.figure(figsize=(12,5))
 for index, row in df_mapAU.T.iterrows():
     plt.plot(row, label=index)
 plt.legend()
-plt.savefig(os.path.join(result_base_path,"Results/CondProb_AU_mappingLinePlot.pdf"))
+plt.savefig(os.path.join(result_base_path,"Results/AU_features/CondProb_AU_mappingLinePlot.pdf"))
 plt.show()

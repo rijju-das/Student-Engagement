@@ -77,7 +77,7 @@ class AU_mapping():
         
         # Plotting the heatmap
         fig = plt.figure(figsize=(6, 6))
-        ax=sns.heatmap(df_map, cmap='magma', linewidths=0.7, annot=False, vmin=-0.12,vmax=0, annot_kws={"size": 16})
+        ax=sns.heatmap(df_map, cmap='magma', linewidths=0.7, annot=True, vmin=-0.12,vmax=0, annot_kws={"size": 16})
         # plt.title("AU Discriminative Power (SDC Scores)")
         # plt.xlabel("SDC Score")
         # plt.ylabel("Action Units")
