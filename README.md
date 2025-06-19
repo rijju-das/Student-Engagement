@@ -90,48 +90,17 @@ All scripts in `ML_models/` assume you’ve already generated and merged your fe
 
 ## 4. Deep-Learning Models
 
-Implement a CNN on WACV, then fine-tune on DAiSEE via transfer learning.
+## 4. Deep-Learning Models
 
-```bash
-cd DL_models
+The `DL_models/` folder houses all the pieces for your CNN-based engagement classifiers:
 
-# 1) Pretrain on WACV
-python train_cnn.py \
-  --data_dir "../WACV data" \
-  --epochs 50 \
-  --save_model models/cnn_wacv.h5
+- **Data loaders** (`data_IF*.py`, `data_IFOF*.py`, …) that wrap images and feature arrays into PyTorch datasets.  
+- **Model definitions** (`model_compare.py`, `model_freeze.py`, …) implementing backbones (ResNet, EfficientNet, etc.) and fusion variants.  
+- **Training scripts** (`train_files/train_hyper_*.py`)—each script targets a different feature set or architecture, often utilizing Optuna for hyperparameter optimization (HPO).  
+- **Evaluation scripts** (`evaluate_*.py`) which load saved weights and export performance CSVs to `Results/DL/`.  
+- **Visualization notebooks** (`visualize_*.ipynb`) for inspecting model focus (e.g., Grad-CAM heatmaps).
 
-# 2) Transfer to DAiSEE
-python transfer_learning.py \
-  --base_model models/cnn_wacv.h5 \
-  --target_data_dir "../DAiSEE data" \
-  --epochs 30 \
-  --save_model models/cnn_daisee.h5
-
-# 3) Evaluate
-python evaluate_dl.py \
-  --model models/cnn_daisee.h5 \
-  --test_data "../DAiSEE data/test" \
-  --out_csv ../Results/dl_summary.csv
-```
-
-* **train\_cnn.py**, **transfer\_learning.py**, **evaluate\_dl.py** all include usage details.
-
----
-
-## 5. Reproducing Figures & Tables
-
-Once you have `ml_summary.csv` and `dl_summary.csv`:
-
-```bash
-cd Results
-python plot_results.py \
-  --ml_csv ../ML_models/results/ml_summary.csv \
-  --dl_csv ../DL_models/results/dl_summary.csv \
-  --out_dir figures
-```
-
-You’ll find all paper‐figures (ROC curves, bar‐charts, confusion matrices) in `Results/figures/`.
+Pick the dataset loader you need, run the matching `train_hyper_*.py` in `train_files/`, then execute `evaluate_*.py` and fire up the Grad-CAM notebook to complete your DL workflow.  
 
 
 ## Data
