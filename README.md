@@ -112,10 +112,12 @@ Select the dataset loader you need, run the corresponding `train_hyper_*.py` fil
 
 ```bibtex
 @article{das2025optimizing,
-  title={Optimizing Student Engagement Detection using Facial and Behavioral Features},
-  author={Das, R. and Dev, S.},
+  title={Optimizing student engagement detection using facial and behavioral features},
+  author={Das, Riju and Dev, Soumyabrata},
   journal={Neural Computing and Applications},
+  pages={1--23},
   year={2025},
+  publisher={Springer}
 }
 ```
 
