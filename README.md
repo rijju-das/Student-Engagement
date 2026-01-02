@@ -103,8 +103,8 @@ Select the dataset loader you need, run the corresponding `train_hyper_*.py` fil
 
 ## Data
 
-* **WACV data/** – Pre‐split source dataset (features & labels) used for pretraining.
-* **DAiSEE data/** – Download from [DAiSEE](https://people.iith.ac.in/vineethnb/resources/daisee/index.html) and place in root as shown.
+* **WACV data/** – Pre‐split source dataset (features & labels) used for pretraining. [WACV data source.](https://github.com/e-drishti/wacv2016.git)
+* **DAiSEE data/** – Download from [DAiSEE](https://people.iith.ac.in/vineethnb/resources/daisee/index.html).
 
 ---
 
