@@ -107,7 +107,7 @@ Select the dataset loader you need, run the corresponding `train_hyper_*.py` fil
 * **DAiSEE data/** – Download from [DAiSEE](https://people.iith.ac.in/vineethnb/resources/daisee/index.html).
 
 ---
-This project is inspired by [Video-Engagement-Analysis](https://github.com/Soumyabrata/Video-Engagement-Analysis.git).
+This project is inspired by [Video-Engagement-Understanding](https://github.com/WangHewei16/DMCNet-for-Video-Engagement-Understanding.git).
 ## 📖 Citation
 
 ```bibtex
